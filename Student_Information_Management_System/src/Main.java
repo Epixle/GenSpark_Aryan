@@ -16,19 +16,23 @@ class Main {
 
     static String fileName = null;
     static boolean updateFileAfterRead = false;
+    static boolean textFileExists = true;
 
     public static void main(String[] args) {
         // This part is just so I can do javac Main.java and java Main when I am in the terminal in the src folder
         File terminalFileName = new File("students.txt");
         File intelliJFileName = new File("src/students.txt");
+        // Determine file name, then read it
         if (terminalFileName.exists()) {
             fileName = "students.txt";
+            readFile();
         } else if (intelliJFileName.exists()) {
             fileName = "src/students.txt";
+            readFile();
+        } else {
+            System.out.println("Could not find students.txt file");
+            textFileExists = false;
         }
-
-        // Read and process students.txt
-        readFile();
 
         Scanner scanner = new Scanner(System.in);
         int choice = 0;
@@ -70,6 +74,8 @@ class Main {
                     System.out.println("Unknown input, try again");
             }
         }
+
+        scanner.close();
     }
 
     /*
@@ -125,6 +131,8 @@ class Main {
             System.out.println("Invalid input: could not be parsed");
         } catch (Exception e) {
             System.out.printf("Unknown input exception: %s\n\n", e);
+        } finally {
+            scanner.close();
         }
     }
 
@@ -132,9 +140,10 @@ class Main {
     public static void viewStudents() {
         Scanner scanner = new Scanner(System.in);
 
-        for(int i = 0; i < studentCount; i++) {
+        for(int i = 0; i < studentCount; i++)
             System.out.printf("%d %s %d %.1f\n", ids[i], names[i], ages[i], grades[i]);
-        }
+
+        scanner.close();
     }
 
     // Prints out the information of a student based on their corresponding ID. ID obtained through user input.
@@ -155,6 +164,8 @@ class Main {
             System.out.println("Invalid input: could not be parsed");
         } catch (Exception e) {
             System.out.printf("Unknown input exception: %s\n\n", e);
+        } finally {
+            scanner.close();
         }
 
     }
@@ -225,6 +236,8 @@ class Main {
             System.out.println("Invalid input: could not be parsed");
         } catch (Exception e) {
             System.out.printf("Unknown input exception: %s\n\n", e);
+        } finally {
+            scanner.close();
         }
     }
 
@@ -265,6 +278,8 @@ class Main {
             System.out.println("Invalid input: could not be parsed");
         } catch (Exception e) {
             System.out.printf("Unknown input exception: %s\n\n", e);
+        } finally {
+            scanner.close();
         }
     }
 
@@ -290,11 +305,11 @@ class Main {
     public static void readFile() {
         File file = new File(fileName);
 
-        try (Scanner fileScanner = new Scanner(file)) {
+        try (Scanner scanner = new Scanner(file)) {
             int row = 0;    // Keep track of the rows just to see where error lines are
 
-            while (fileScanner.hasNextLine() && studentCount < 100) {
-                String line = fileScanner.nextLine().trim();
+            while (scanner.hasNextLine() && studentCount < 100) {
+                String line = scanner.nextLine();
                 row++;
 
                 // Skip empty lines
@@ -344,7 +359,17 @@ class Main {
             updateFile();
     }
 
+    /*
+        When changes are made to the arrays, such as adding a student, updating a student's information, or deleting
+        a student, this method is then called within the other ones to also update the information in the students.txt
+        file. If there is no students.txt file located, this method is simply skipped from the textFileExists bool.
+        Only time updaate is not done is in the beginning when reading the file and there are invalid lines/entries
+        for testing purposes to see which lines the code actually rejects (can change with updateFileAfterRead bool).
+     */
     public static void updateFile() {
+        if (!textFileExists)
+            return;
+
         try (FileWriter writer = new FileWriter(fileName)) {
             for (int i = 0; i < studentCount; i++)
                 writer.write(ids[i] + "," + names[i] + "," + ages[i] + "," + grades[i] + "\n");
