@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="SIMSProgram">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Student_Information_Management_System/src/SIMSProgram.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
