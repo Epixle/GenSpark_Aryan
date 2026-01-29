@@ -37,45 +37,52 @@ class Main {
         Scanner scanner = new Scanner(System.in);
         int choice = 0;
 
-        // Ask the user to make a choice of what changes to make until they exit
-        while (choice != 6) {
-            System.out.println("""
-                    What do you want to do?
-                    \t1. Add a Student
-                    \t2. View Students
-                    \t3. Search a Student by ID
-                    \t4. Update a Student's Information
-                    \t5. Delete a Student
-                    \t6. Exit
-                    Enter a number:""");
+        try {
+            // Ask the user to make a choice of what changes to make until they exit
+            while (choice != 6) {
+                System.out.println("""
+                        What do you want to do?
+                        \t1. Add a Student
+                        \t2. View Students
+                        \t3. Search a Student by ID
+                        \t4. Update a Student's Information
+                        \t5. Delete a Student
+                        \t6. Exit
+                        Enter a number:""");
 
-            choice = scanner.nextInt();
+                choice = scanner.nextInt();
 
-            // Call the corresponding method according to the user's choice
-            switch (choice) {
-                case 1:
-                    addStudent();
-                    break;
-                case 2:
-                    viewStudents();
-                    break;
-                case 3:
-                    searchStudentByID();
-                    break;
-                case 4:
-                    updateStudent();
-                    break;
-                case 5:
-                    deleteStudent();
-                    break;
-                case 6:
-                    break;
-                default:
-                    System.out.println("Unknown input, try again");
+                // Call the corresponding method according to the user's choice
+                switch (choice) {
+                    case 1:
+                        addStudent();
+                        break;
+                    case 2:
+                        viewStudents();
+                        break;
+                    case 3:
+                        searchStudentByID();
+                        break;
+                    case 4:
+                        updateStudent();
+                        break;
+                    case 5:
+                        deleteStudent();
+                        break;
+                    case 6:
+                        break;
+                    default:
+                        System.out.println("Unknown input, try again");
+                }
             }
+        } catch (NumberFormatException | InputMismatchException e) {
+            // String numbers parsing error handling
+            System.out.println("Invalid input: could not be parsed");
+        } catch (Exception e) {
+            System.out.printf("Unknown input exception: %s\n\n", e);
+        } finally {
+            scanner.close();
         }
-
-        scanner.close();
     }
 
     /*
