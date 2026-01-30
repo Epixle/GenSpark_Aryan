@@ -1,10 +1,10 @@
 import java.util.HashMap;
 
 public class Student {
-    private int ID;
+    private final int ID;
     private String name;
     private String dob;
-    private HashMap<Integer, Course> courses;
+    private final HashMap<Integer, Course> courses;
 
     public Student(int ID, String name, String dob) {
         this.ID = ID;
@@ -15,10 +15,6 @@ public class Student {
 
     public int getID() {
         return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
     }
 
     public String getName() {
@@ -35,5 +31,17 @@ public class Student {
 
     public void setDob(String dob) {
         this.dob = dob;
+    }
+
+    public HashMap<Integer, Course> getCourses() {
+        return courses;
+    }
+
+    public void addCourse(Course course) {
+        courses.put(course.getCourseID(), course);
+    }
+
+    public void removeCourse(int ID) {
+        courses.remove(ID);
     }
 }

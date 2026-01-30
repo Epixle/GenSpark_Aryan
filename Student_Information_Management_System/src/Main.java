@@ -20,6 +20,7 @@ class Main {
 
     public static void main(String[] args) {
         // Check where student file is depending on IDE configuration or if accessing by terminal
+        // More so just for me since I messed up in setting up the project environments a little bit
         File terminalFile = new File("students.txt");
         File srcFile = new File("src/students.txt");
         File simsFile = new File("Student_Information_Management_System/src/students.txt");

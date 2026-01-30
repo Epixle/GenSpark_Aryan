@@ -1,9 +1,9 @@
 import java.util.HashMap;
 
 public class Course {
-    private int courseID;
+    private final int courseID;
     private String title;
-    private HashMap<Integer, Student> students;
+    private final HashMap<Integer, Student> students;
 
     public Course(int courseID, String title) {
         this.courseID = courseID;
@@ -11,16 +11,8 @@ public class Course {
         this.students = new HashMap<>();
     }
 
-    public int void addStudent(Student student) {
-        students.add(student);
-    }
-
     public int getCourseID() {
         return courseID;
-    }
-
-    public void setCourseID(int courseID) {
-        this.courseID = courseID;
     }
 
     public String getTitle() {
@@ -29,5 +21,17 @@ public class Course {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public HashMap<Integer, Student> getStudents() {
+        return students;
+    }
+
+    public void addStudent(Student student) {
+        students.put(student.getID(), student);
+    }
+
+    public void removeStudent(int ID) {
+        students.remove(ID);
     }
 }
