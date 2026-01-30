@@ -1,3 +1,5 @@
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.HashMap;
 
@@ -148,10 +150,14 @@ class StudentManagementSystem {
 
     // Update either the name or DOB of a student as long as new inputs are valid on a student in students
     public static void updateStudent(Scanner scanner) {
-        Student student = getStudent(scanner);
+        Student student;
 
-        if (student == null)
+        try {
+            student = getStudent(scanner);
+        } catch (IllegalArgumentException | NoSuchElementException e) {
+            System.out.println(e.getMessage());
             return;
+        }
 
         int choice = 0;
 
@@ -198,10 +204,14 @@ class StudentManagementSystem {
     }
 
     public static void deleteStudent(Scanner scanner) {
-        Student student = getStudent(scanner);
+        Student student;
 
-        if (student == null)
+        try {
+            student = getStudent(scanner);
+        } catch (IllegalArgumentException | NoSuchElementException e) {
+            System.out.println(e.getMessage());
             return;
+        }
 
         for (Course course : student.getCourses().values())
             course.removeStudent(student.getID());
@@ -213,10 +223,14 @@ class StudentManagementSystem {
 
     // See the information such as ID, name, DOB, and course list of a student by their ID
     public static void viewStudent(Scanner scanner) {
-        Student student = getStudent(scanner);
+        Student student;
 
-        if (student == null)
+        try {
+            student = getStudent(scanner);
+        } catch (IllegalArgumentException | NoSuchElementException e) {
+            System.out.println(e.getMessage());
             return;
+        }
 
         System.out.printf("%d %s %s\n", student.getID(), student.getName(), student.getDob());
 
@@ -339,10 +353,14 @@ class StudentManagementSystem {
 
     // Update the title as long as new input is valid on a course in courses
     public static void updateCourse(Scanner scanner) {
-        Course course = getCourse(scanner);
+        Course course;
 
-        if (course == null)
+        try {
+            course = getCourse(scanner);
+        } catch (IllegalArgumentException | NoSuchElementException e) {
+            System.out.println(e.getMessage());
             return;
+        }
 
         System.out.println("Enter the updated title of the course");
 
@@ -352,10 +370,14 @@ class StudentManagementSystem {
     }
 
     public static void deleteCourse(Scanner scanner) {
-        Course course = getCourse(scanner);
+        Course course;
 
-        if (course == null)
+        try {
+            course = getCourse(scanner);
+        } catch (IllegalArgumentException | NoSuchElementException e) {
+            System.out.println(e.getMessage());
             return;
+        }
 
         for (Student student : course.getStudents().values())
             student.removeCourse(course.getCourseID());
@@ -367,10 +389,14 @@ class StudentManagementSystem {
 
     // See the information such as course ID, title, and student list of a course by its ID
     public static void viewCourse(Scanner scanner) {
-        Course course = getCourse(scanner);
+        Course course;
 
-        if (course == null)
+        try {
+            course = getCourse(scanner);
+        } catch (IllegalArgumentException | NoSuchElementException e) {
+            System.out.println(e.getMessage());
             return;
+        }
 
         System.out.printf("%d %s\n", course.getCourseID(), course.getTitle());
 
@@ -454,16 +480,14 @@ class StudentManagementSystem {
     }
 
     public static void enrollStudent(Scanner scanner) {
-        Student student = getStudent(scanner);
-        if (student == null) {
-            System.out.println("Could not find student with this ID");
-            return;
-        }
+        Student student;
+        Course course;
 
-        Course course = getCourse(scanner);
-
-        if (course == null) {
-            System.out.println("Could not find course with this ID");
+        try {
+            student = getStudent(scanner);
+            course = getCourse(scanner);
+        } catch (IllegalArgumentException | NoSuchElementException e) {
+            System.out.println(e.getMessage());
             return;
         }
 
@@ -474,11 +498,14 @@ class StudentManagementSystem {
     }
 
     public static void withdrawStudent(Scanner scanner) {
-        Student student = getStudent(scanner);
-        Course course = getCourse(scanner);
+        Student student;
+        Course course;
 
-        if (student == null || course == null) {
-            System.out.println("Could not find student or course");
+        try {
+            student = getStudent(scanner);
+            course = getCourse(scanner);
+        } catch (IllegalArgumentException | NoSuchElementException e) {
+            System.out.println(e.getMessage());
             return;
         }
 
@@ -489,10 +516,14 @@ class StudentManagementSystem {
     }
 
     public static void displayCoursesOfStudent(Scanner scanner) {
-        Student student = getStudent(scanner);
+        Student student;
 
-        if (student == null)
+        try {
+            student = getStudent(scanner);
+        } catch (IllegalArgumentException | NoSuchElementException e) {
+            System.out.println(e.getMessage());
             return;
+        }
 
         if (student.getCourses().isEmpty()) {
             System.out.println("Student is not enrolled in any courses");
@@ -508,10 +539,14 @@ class StudentManagementSystem {
     }
 
     public static void displayStudentsInCourse(Scanner scanner) {
-        Course course = getCourse(scanner);
+        Course course;
 
-        if (course == null)
+        try {
+            course = getCourse(scanner);
+        } catch (IllegalArgumentException | NoSuchElementException e) {
+            System.out.println(e.getMessage());
             return;
+        }
 
         if (course.getStudents().isEmpty()) {
             System.out.println("No students taking this course");
@@ -528,61 +563,62 @@ class StudentManagementSystem {
 
     /*
         Helper method that asks the user for the ID of a student to retrieve from the students list.
-        If found, returns student object, else null.
+        If found, returns student object. Will throw exceptions if there are any issues with the input.
         @param scanner: Pass scanner from class calling this method.
+        @output Student: Returns the student associated with ID user is searching for
      */
-    static public Student getStudent(Scanner scanner) {
+    static public Student getStudent(Scanner scanner)
+            throws InputMismatchException, IllegalArgumentException, NoSuchElementException {
         System.out.println("What is the ID of the student?");
 
         if (!scanner.hasNextInt()) {
-            System.out.println("Invalid input: could not be parsed");
+            // Removes incorrect line
             scanner.nextLine();
 
-            return null;
+            // Throw InputMismatch for wrong input type
+            throw new InputMismatchException("Invalid Input: could not be parsed");
         }
 
         int ID = scanner.nextInt();
         scanner.nextLine();
 
-        if (ID <= 0) {
-            System.out.println("ID cannot be less than 0");
-            return null;
-        }
+        // If ID is not a natural number, throws IllegalArgument
+        if (ID <= 0)
+            throw new IllegalArgumentException("ID must be greater than 0");
 
         Student student = students.get(ID);
 
-        if (student == null) {
-            System.out.println("No student with this ID.");
-            return null;
-        }
+        // If there doesn't exist a student with the ID in students, throw NoSuchElement
+        if (student == null)
+            throw new NoSuchElementException("Student not found");
 
         return student;
     }
 
-    static public Course getCourse(Scanner scanner) {
+    static public Course getCourse(Scanner scanner)
+            throws InputMismatchException, IllegalArgumentException, NoSuchElementException {
         System.out.println("What is the ID of the course?");
 
         if (!scanner.hasNextInt()) {
-            System.out.println("Invalid input: could not be parsed");
+            // Removes incorrect line
             scanner.nextLine();
 
-            return null;
+            // Throw InputMismatch for wrong input type
+            throw new InputMismatchException("Invalid Input: could not be parsed");
         }
 
         int ID = scanner.nextInt();
         scanner.nextLine();
 
-        if (ID <= 0) {
-            System.out.println("ID cannot be less than 0");
-            return null;
-        }
+        // If ID is not a natural number, throws IllegalArgument
+        if (ID <= 0)
+            throw new IllegalArgumentException("ID must be greater than 0");
 
         Course course = courses.get(ID);
 
-        if (course == null) {
-            System.out.println("No course with this ID.");
-            return null;
-        }
+        // If there doesn't exist a course with the ID in courses, throw NoSuchElement
+        if (course == null)
+            throw new NoSuchElementException("Course not found");
 
         return course;
     }
