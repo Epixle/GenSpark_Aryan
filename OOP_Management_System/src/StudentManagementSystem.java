@@ -15,7 +15,7 @@ class StudentManagementSystem {
         Scanner scanner = new Scanner(System.in);
         int choice = 0;
 
-        // Ask the user to make a choice of what changes to make until they exit
+        // Ask the user to make a choice of what changes to make until they exit - Main interface
         while (choice != 4) {
             System.out.println("""
                     What do you want to do?
@@ -53,6 +53,10 @@ class StudentManagementSystem {
         }
     }
 
+    /*
+        Creates the secondary interactive terminal interface for manipulating student information
+        @param scanner: Passes scanner from main method
+     */
     public static void studentInfo(Scanner scanner) {
         int choice = 0;
 
@@ -68,6 +72,7 @@ class StudentManagementSystem {
                     \t6. Exit
                     Enter a number:""");
 
+            // Make sure choice is valid
             if (scanner.hasNextInt()) {
                 choice = scanner.nextInt();
                 scanner.nextLine();
@@ -102,10 +107,14 @@ class StudentManagementSystem {
         }
     }
 
-    // Get information on a student and add them to the students list
+    /*
+        Get information on a student and add them to the students list
+        @param scanner: Passes scanner from studentInfo method
+     */
     public static void addStudent(Scanner scanner) {
         System.out.println("What is the ID of the student?");
 
+        // Make sure ID input is valid
         if (!scanner.hasNextInt()) {
             System.out.println("Invalid input: could not be parsed");
             scanner.nextLine();
@@ -116,11 +125,13 @@ class StudentManagementSystem {
         int ID = scanner.nextInt();
         scanner.nextLine();
 
+        // Make sure ID is a natural number
         if (ID <= 0) {
             System.out.println("ID cannot be less than 0");
             return;
         }
 
+        // If key already exists, not unique and cannot pass
         if (students.containsKey(ID)) {
             System.out.println("A student is using this ID, cannot use again.");
             return;
@@ -148,7 +159,10 @@ class StudentManagementSystem {
         viewStudent();
     }
 
-    // Update either the name or DOB of a student as long as new inputs are valid on a student in students
+    /*
+        Update either the name or DOB of a student as long as new inputs are valid on a student in students
+        @param scanner: Passes scanner from studentInfo method
+     */
     public static void updateStudent(Scanner scanner) {
         Student student;
 
@@ -161,6 +175,7 @@ class StudentManagementSystem {
 
         int choice = 0;
 
+        // Another interaction point for user to choose either name or dob to change
         while (choice != 3) {
             System.out.println("""
                     What would you like to update (To change course info, go to Enrollment)?
@@ -203,6 +218,10 @@ class StudentManagementSystem {
         }
     }
 
+    /*
+        Deletes a student from the HashMap and looks at their courses to delete their information from there too.
+        @param scanner: Passes scanner from studentInfo method
+     */
     public static void deleteStudent(Scanner scanner) {
         Student student;
 
@@ -221,7 +240,10 @@ class StudentManagementSystem {
         viewStudent();
     }
 
-    // See the information such as ID, name, DOB, and course list of a student by their ID
+    /*
+        See the information such as ID, name, DOB, and course list of a student by their ID.
+        @param scanner: Passes scanner from studentInfo method
+     */
     public static void viewStudent(Scanner scanner) {
         Student student;
 
@@ -248,11 +270,12 @@ class StudentManagementSystem {
         }
     }
 
-    // See the information of all students
+    // Iterate through every student in the students HashMap to list all their details.
     public static void viewStudent() {
         for (Student student : students.values()) {
             System.out.printf("%d %s %s\n", student.getID(), student.getName(), student.getDob());
 
+            // List out every course unless it is empty
             if (student.getCourses().isEmpty()) {
                 System.out.println("Student is not enrolled in any classes yet");
             } else {
@@ -268,6 +291,10 @@ class StudentManagementSystem {
         }
     }
 
+    /*
+        Creates the secondary interactive terminal interface for manipulating course information
+        @param: Passes scanner from main method
+     */
     public static void courseInfo(Scanner scanner) {
         int choice = 0;
 
@@ -283,6 +310,7 @@ class StudentManagementSystem {
                     \t6. Exit
                     Enter a number:""");
 
+            // Validate user input to make sure it's an int
             if (scanner.hasNextInt()) {
                 choice = scanner.nextInt();
                 scanner.nextLine();
@@ -317,7 +345,10 @@ class StudentManagementSystem {
         }
     }
 
-    // Get information on a course and add it to the courses list
+    /*
+        Get information on a course and add it to the courses list
+        @param scanner: Passes scanner from courseInfo method
+     */
     public static void addCourse(Scanner scanner) {
         System.out.println("What is the ID of the course?");
 
@@ -351,7 +382,10 @@ class StudentManagementSystem {
         viewCourse();
     }
 
-    // Update the title as long as new input is valid on a course in courses
+    /*
+        Update the title as long as new input is valid on a course in courses
+        @param scanner: Passes scanner from courseInfo method
+     */
     public static void updateCourse(Scanner scanner) {
         Course course;
 
@@ -362,6 +396,7 @@ class StudentManagementSystem {
             return;
         }
 
+        // Since only title can be changed, can ask for new title directly instead of making choice interface
         System.out.println("Enter the updated title of the course");
 
         course.setTitle(scanner.nextLine());
@@ -369,6 +404,10 @@ class StudentManagementSystem {
         viewCourse();
     }
 
+    /*
+        Delete a course from the courses HashMap and checks
+        @param scanner: Passes scanner from courseInfo method
+     */
     public static void deleteCourse(Scanner scanner) {
         Course course;
 
@@ -387,7 +426,10 @@ class StudentManagementSystem {
         viewCourse();
     }
 
-    // See the information such as course ID, title, and student list of a course by its ID
+    /*
+        See the information such as course ID, title, and student list of a course by its ID
+        @param scanner: Passes scanner from courseInfo method
+     */
     public static void viewCourse(Scanner scanner) {
         Course course;
 
@@ -414,7 +456,10 @@ class StudentManagementSystem {
         }
     }
 
-    // See the information of all courses
+    /*
+        See the information of all courses
+        @param scanner: Passes scanner from courseInfo method
+     */
     public static void viewCourse() {
         for (Course course : courses.values()) {
             System.out.printf("%d %s\n", course.getCourseID(), course.getTitle());
@@ -434,6 +479,10 @@ class StudentManagementSystem {
         }
     }
 
+    /*
+        The enrollment interactive interface
+        @param scanner: Passes scanner from main method
+     */
     public static void enrollment(Scanner scanner) {
         int choice = 0;
 
@@ -448,6 +497,7 @@ class StudentManagementSystem {
                     \t5. Exit
                     Enter a number:""");
 
+            // Validate user input is int
             if (scanner.hasNextInt()) {
                 choice = scanner.nextInt();
                 scanner.nextLine();
@@ -479,6 +529,10 @@ class StudentManagementSystem {
         }
     }
 
+    /*
+        Add a student to a course; puts each object in the other's HashMap
+        @param scanner: Passes scanner from enrollment method
+     */
     public static void enrollStudent(Scanner scanner) {
         Student student;
         Course course;
@@ -497,6 +551,10 @@ class StudentManagementSystem {
         System.out.printf("Enrolled %s in course %s\n", student.getName(), course.getTitle());
     }
 
+    /*
+        Removes a student from a course; removes each object from the other's HashMap
+        @param scanner: Passes scanner from enrollment method
+     */
     public static void withdrawStudent(Scanner scanner) {
         Student student;
         Course course;
@@ -515,6 +573,10 @@ class StudentManagementSystem {
         System.out.printf("Withdrew %s from course %s\n", student.getName(), course.getTitle());
     }
 
+    /*
+        Displays all the courses that a student is attending. Get student by ID and retrieve HashMap.
+        @param scanner: Passes scanner from enrollment method
+     */
     public static void displayCoursesOfStudent(Scanner scanner) {
         Student student;
 
@@ -538,6 +600,10 @@ class StudentManagementSystem {
         System.out.println();
     }
 
+    /*
+        Displays all students within a class. Get class by ID and retrieve HashMap.
+        @param scanner: Passes scanner from enrollment method
+     */
     public static void displayStudentsInCourse(Scanner scanner) {
         Course course;
 
@@ -595,6 +661,11 @@ class StudentManagementSystem {
         return student;
     }
 
+    /*
+        Like the getStudent helper method, but this validates a Course instead of a Student.
+        @param scanner: Pass scanner from class calling this method.
+        @output Course: Returns the course associated with ID user is searching for
+     */
     static public Course getCourse(Scanner scanner)
             throws InputMismatchException, IllegalArgumentException, NoSuchElementException {
         System.out.println("What is the ID of the course?");
