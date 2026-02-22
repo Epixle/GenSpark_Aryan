@@ -1,0 +1,8 @@
+{
+    "name": "taskflow-frontend",
+    "version": "1.0.0",
+    "scripts": {
+        "build": "mkdir -p build && cp index.html build/index.html",
+        "test": "node test.js"
+    }
+}
