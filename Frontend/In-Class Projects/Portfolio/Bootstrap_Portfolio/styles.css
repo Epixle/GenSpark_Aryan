@@ -1,0 +1,28 @@
+.headshot-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-top: 20px;
+    background-size: cover;       /* crop without squish */
+    background-position: center;  /* keep face centered */
+    background-repeat: no-repeat;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: white;
+}
+
+.nav-link:hover {
+    color: white;
+}
+
+.nav-pills .nav-link {
+  transition: transform 0.2s ease-in-out;
+}
+
+.nav-pills .nav-link:hover {
+  transform: scale(1.05);
+}

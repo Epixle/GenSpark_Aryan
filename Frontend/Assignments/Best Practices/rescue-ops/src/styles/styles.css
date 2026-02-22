@@ -1,0 +1,123 @@
+:root {
+    color: black;
+    background: #eee;
+}
+
+body {
+	margin: 0;
+	font-family: Arial, sans-serif;
+	background: #eee;
+	color: black;
+	display: flex;
+	justify-content: center;
+}
+
+.page {
+    width: 1000px;
+    padding: 20px;
+}
+.header {
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.panel, .col, .card {
+	background: #fff;
+	border: 2px solid #ccc;
+	border-radius: 6px;
+	padding: 10px;
+}
+
+.form .row {
+    display: flex;
+    gap: 8px;
+}
+
+input, select, button {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+    color: black;
+}
+
+input {
+    flex: 1;
+}
+
+.board {
+    display: flex;
+    gap: 12px;
+}
+
+.col {
+    flex: 1;
+    background: #ddd;
+}
+
+.colHead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.card {
+    margin-bottom: 10px;
+}
+
+.cardTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.cardBtns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.pill {
+    border: 1px solid #ccc;
+    border-radius: 999px;
+    padding: 2px 8px;
+    font-size: 12px;
+}
+
+.error {
+    color: red;
+    margin-top: 8px;
+}
+
+.warn {
+    color: orange;
+    margin-top: 8px;
+}
+
+.muted {
+    color: #666;
+    margin-top: 8px;
+    font-size: 12px;
+}
+
+.danger {
+    border-color: red;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+@media (max-width: 900px) {
+	.page {
+        width: 95%;
+    }
+    
+	.board {
+        flex-direction: column;
+    }
+}

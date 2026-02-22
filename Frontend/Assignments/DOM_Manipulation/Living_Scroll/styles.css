@@ -1,0 +1,26 @@
+body {
+  font-family: Arial, sans-serif;
+  max-width: 500px;
+  margin: 40px auto;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+input {
+  flex: 1;
+  padding: 10px;
+}
+
+.entry {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.entry span {
+  flex: 1;
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+  <meta charset = "UTF-8" />
+  <title>UI Alchemist</title>
+  <link rel = "stylesheet" href = "styles.css" />
+</head>
+<body>
+    <h1>UI Alchemist</h1>
+
+    <div class = "panel">
+        <h2>Control Panel</h2>
+
+        <button id = "dark">Dark Mode</button>
+
+        <button id = "decrease">A-</button>
+        <button id = "increase">A+</button>
+
+        <button id = "highlight">Highlight</button>
+        <button id = "details">Show/Hide Details</button>
+
+        <button id = "reset">Reset</button>
+
+        <div id = "statusText"></div>
+    </div>
+
+    <div id = "preview" class = "panel">
+        <h2>Preview Panel</h2>
+        <p>This panel changes based on the controls.</p>
+        <ul id = "detail">
+            <li>Item one</li>
+            <li>Item two</li>
+            <li>Item three</li>
+        </ul>
+    </div>
+    <script src = "script.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+body {
+    height: 100vh;
+}
+
+#answer {
+    background-color: #eee;
+    height: 60px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 10px;
+    font-size: 24px;
+}
+
+button {
+    height: 60px;
+    font-size: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+}

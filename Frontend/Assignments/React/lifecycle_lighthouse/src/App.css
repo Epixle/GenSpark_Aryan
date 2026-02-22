@@ -1,0 +1,79 @@
+body {
+	margin: 0;
+	font-family: Arial, sans-serif;
+	background: #eee;
+	color: black;
+	display: flex;
+	justify-content: center;
+}
+
+.page {
+	width: 900px;
+	padding: 20px;
+}
+
+.layout {
+	display: flex;
+	gap: 12px;
+	align-items: flex-start;
+	margin-bottom: 12px;
+}
+
+.panel {
+	background: white;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	padding: 12px;
+	flex: 1;
+}
+
+.controlRow {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	margin-top: 10px;
+}
+
+button, select {
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background: #fff;
+	color: black;
+}
+
+.list {
+	margin: 0;
+	padding-left: 18px;
+}
+
+.item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 10px;
+	margin: 8px 0;
+}
+
+.tagHigh, .tagLow {
+	border: 1px solid #ccc;
+	padding: 2px 8px;
+	border-radius: 999px;
+	font-size: 12px;
+}
+
+.error {
+	color: #b00020;
+}
+
+.success {
+	color: #0a7a2f;
+}
+
+.on {
+	font-weight: bold;
+}
+
+.off {
+	color: #666;
+}

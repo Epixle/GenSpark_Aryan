@@ -1,0 +1,86 @@
+/* App.css (barebones, readable) */
+body {
+	margin: 0;
+	font-family: Arial, sans-serif;
+	background: #f4f4f4;
+	color: #222;
+	display: flex;
+	justify-content: center;
+}
+
+.page {
+	width: 900px;
+	padding: 20px;
+}
+
+.header {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.layout {
+	display: flex;
+	gap: 15px;
+	align-items: flex-start;
+}
+
+.main {
+	flex: 2;
+}
+
+.side {
+	flex: 1;
+	margin-top: 75px;
+}
+
+.grid {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.card {
+	background: white;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	padding: 10px;
+	cursor: pointer;
+}
+
+.card:hover {
+	border-color: #888;
+}
+
+.cardTop {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 10px;
+}
+
+.cardTitle {
+	margin: 0;
+	font-size: 16px;
+}
+
+.meta {
+	margin: 4px 0;
+}
+
+.badge {
+	font-size: 12px;
+	border: 1px solid #ccc;
+	padding: 2px 8px;
+	border-radius: 999px;
+}
+
+.card--advanced {
+	border-width: 2px;
+}
+
+.panel {
+	background: white;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	padding: 10px;
+}

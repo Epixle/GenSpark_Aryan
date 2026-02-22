@@ -1,0 +1,101 @@
+body {
+	margin: 0;
+	font-family: Arial, sans-serif;
+	background: #eee;
+	color: black;
+	display: flex;
+	justify-content: center;
+}
+
+.page {
+	width: 800px;
+	padding: 20px;
+}
+
+.header {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.row {
+	display: flex;
+	gap: 12px;
+	align-items: flex-start;
+	margin-bottom: 12px;
+}
+
+.panel {
+	background: white;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	padding: 12px;
+	flex: 1;
+}
+
+.big {
+	font-size: 40px;
+	font-weight: bold;
+	margin: 10px 0;
+}
+
+button {
+	margin-right: 10px;
+	color: black;
+}
+
+.inputRow {
+	display: flex;
+	gap: 8px;
+	margin-bottom: 10px;
+}
+
+input {
+	flex: 1;
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+button {
+	padding: 8px 10px;
+	border: 1px solid #ccc;
+	background: #fff;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+button:hover {
+	border-color: #888;
+}
+
+.warn {
+	color: #b00020;
+	margin-top: 10px;
+}
+
+.on {
+	font-weight: bold;
+}
+
+.off {
+	color: #555;
+}
+
+.list {
+	margin: 0;
+	padding-left: 18px;
+}
+
+.listItem {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 10px;
+	margin: 6px 0;
+}
+
+.footer {
+	margin-top: 12px;
+	text-align: center;
+	color: #555;
+}

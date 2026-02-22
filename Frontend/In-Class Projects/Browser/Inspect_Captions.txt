@@ -1,0 +1,13 @@
+Opening DevTools
+
+When inspecting the website, I can see multiple tabs on both the top and bottom half of the page. The main ones I see are the "Console" for console logs and "Elements" which contains all the HTML, along with a few other tabs on the bottom like DOM Breakpoints and Styles.
+
+
+Inspect h1, img, and a
+
+Simply various tags that represent different types of HTML features. When looking at the link from the "a" tag, it showed how it was both a link and an image of the W3Schools logo.
+
+
+Edit Element
+
+Can click on any sentence on the HTML page and change the values. I can see how the changes are reflected in the webpage, but it gets reset when I refresh the page.

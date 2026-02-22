@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset = "UTF-8">
+        <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+        <title>My First Web Page</title>
+    </head>
+    <body style = "margin: 0; padding: 0;">
+        <h1 style = "text-align: center;">Aryan's Portfolio</h1>
+        
+        <div style = "display:flex; align-items:center;">
+            <a href="Home.html" style="display:flex;align-items:center;justify-content:center;width:20%;height:60px;
+                background-color:#ccc;text-decoration:none;color:black;font-size:18px;font-family:Arial,Helvetica,sans-serif;">
+                Home
+            </a>
+
+            <a href="About.html" style="display:flex;align-items:center;justify-content:center;width:20%;height:60px;
+                background-color:#ccc;border-left:1px solid #999;text-decoration:none;color:black;font-size:18px;font-family:Arial,Helvetica,sans-serif;">
+                About Me
+            </a>
+
+            <a href="Portfolio.html" style="display:flex;align-items:center;justify-content:center;width:20%;height:60px;
+                background-color:#ccc;border-left:1px solid #999;text-decoration:none;color:black;font-size:18px;font-family:Arial,Helvetica,sans-serif;">
+                Portfolio
+            </a>
+
+            <a href="Resume.html" style="display:flex;align-items:center;justify-content:center;width:20%;height:60px;
+                background-color:#ccc;border-left:1px solid #999;text-decoration:none;color:black;font-size:18px;font-family:Arial,Helvetica,sans-serif;">
+                Resume
+            </a>
+
+            <a href="Contact.html" style="display:flex;align-items:center;justify-content:center;width:20%;height:60px;
+                background-color:#aaa;border-left:1px solid #999;text-decoration:none;color:black;font-size:18px;font-family:Arial,Helvetica,sans-serif;">
+                Contact
+            </a>
+        </div>
+
+        <div style = "border-radius: 2%; width: 20%; height: 50%; margin:auto; padding-left: 15px;
+            padding-right: 15px; padding-top: 1px; padding-bottom: 15px; margin-top: 5%; box-shadow: 0 0 7.5px #888;">
+            <form>
+                <h3 style = "color: #555;">Contact Info</h3>
+
+                <label for = "fname">First name:</label><br>
+                <input type = "text" id = "fname" name = "fname" style = "width: 95%; height: 20px;" required><br><br>
+
+                <label for = "lname">Last name:</label><br>
+                <input type = "text" id = "lname" name = "lname" style = "width: 95%; height: 20px;" required><br><br>
+
+                <label for = "email">Email ID:</label><br>
+                <input type = "email" id = "email" name = "email" style = "width: 95%; height: 20px;" required><br><br>
+
+                <label for = "password">Password:</label><br>
+                <input type = "password" id = "password" name = "password" style = "width: 95%; height: 20px;" required><br><br>
+
+                <label for = "phone">Contact Info:</label><br>
+                +1 <input type = "text" pattern = "[0-9]{3}" inputmode = "numeric" style = "width: 35px; height: 20px;" required> -
+                <input type = "text" pattern = "[0-9]{3}" inputmode = "numeric" style = "width: 35px; height: 20px;" required> -
+                <input type = "text" pattern = "[0-9]{4}" inputmode = "numeric" style = "width: 45px; height: 20px;" required><br><br>
+
+                <select id = "sex" name = "sex" style = "height: 30px; width: 98%;">
+                    <option value = "male">Male</option>
+                    <option value = "female">Female</option>
+                    <option value = "sex-na">Prefer not to answer</option>
+                </select>
+
+                <br><br><input type = "submit" value = "Submit"
+                style = "background-color: #4CAF50; border: 1px solid #4CAF50; border-radius: 4px;
+                padding: 10px 20px; color: white; cursor: pointer; width: 98%;">
+            </form>
+        </div>
+    </body>
+</html>
