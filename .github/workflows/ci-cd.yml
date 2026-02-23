@@ -46,7 +46,7 @@ jobs:
         run: |
           mkdir -p staging
           cp -r SDLC/DevOps_Foundations/IAS_Blueprint/frontend/build staging/
-          echo "Deployment simulation successful."
+          echo "Deployment simulation successful and validated."
 
       - name: Validate deployment simulation
         run: |
