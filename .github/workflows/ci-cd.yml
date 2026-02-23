@@ -19,28 +19,37 @@ jobs:
         with:
           node-version: "20"
 
+      # ---- Frontend ----
       - name: Install frontend dependencies
-        working-directory: frontend
+        working-directory: SDLC/DevOps_Foundations/IAS_Blueprint/frontend
         run: npm install
 
       - name: Build frontend
-        working-directory: frontend
+        working-directory: SDLC/DevOps_Foundations/IAS_Blueprint/frontend
         run: npm run build
 
       - name: Run frontend tests
-        working-directory: frontend
+        working-directory: SDLC/DevOps_Foundations/IAS_Blueprint/frontend
         run: npm test
 
+      # ---- Backend ----
       - name: Install backend dependencies
-        working-directory: backend
+        working-directory: SDLC/DevOps_Foundations/IAS_Blueprint/backend
         run: npm install
 
       - name: Run backend tests
-        working-directory: backend
+        working-directory: SDLC/DevOps_Foundations/IAS_Blueprint/backend
         run: npm test
 
+      # ---- Deployment Simulation ----
       - name: Simulate deployment
         run: |
           mkdir -p staging
-          cp -r frontend/build staging/
+          cp -r SDLC/DevOps_Foundations/IAS_Blueprint/frontend/build staging/
           echo "Deployment simulation successful."
+
+      - name: Validate deployment simulation
+        run: |
+          test -d staging/build
+          test -f staging/build/index.html
+          echo "Deployment validation passed."
