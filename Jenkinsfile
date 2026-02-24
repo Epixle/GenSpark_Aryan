@@ -26,14 +26,26 @@ pipeline {
                 }
             }
         }
+
+        stage('Deploy Simulation') {
+            steps {
+                sh '''
+                    rm -rf staging
+                    mkdir -p staging
+                    cp -r SDLC/DevOps_Foundations/IAS_Blueprint/frontend/build staging/
+                    test -f staging/build/index.html
+                    echo "DEPLOY SIMULATION SUCCESS: Build copied to staging and validated."
+                '''
+            }
+        }
     }
 
     post {
-        always {
-            echo 'Pipeline finished (success or failure).'
-        }
         failure {
-            echo 'Pipeline failed. Fix the failing stage before merging/deploying.'
+            echo 'PIPELINE FAILED: Fix the failing stage and rerun.'
+        }
+        success {
+            echo 'PIPELINE SUCCESS: Build, tests, and deploy simulation passed.'
         }
     }
 }
