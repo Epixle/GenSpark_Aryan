@@ -1,6 +1,1 @@
-Date	Type	Amount	Category
-2026-02-05	Income	3800	Salary
-2026-02-12	Expense	287 	Food
-2026-03-01	Expense	1200	Rent
-2026-03-05	Income	25	Refund
-2026-03-10	Expense	14	Food
+date,type,amount,category,note
